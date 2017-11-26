@@ -31,7 +31,21 @@ def print_set(tag, vocabset):
     for word in vocabset:
         print(word)
     print()
-    
-print_set("Invalid", invalid_vocab)
-print_set("Known", known_vocab)
-print_set("Target", target_vocab)
+
+def print_result(resultdict):
+    for tag in resultdict:
+        print_set(tag, resultdict[tag])
+    print("Summary:")
+    for tag in resultdict:
+        print(" %s: %d"%(tag, len(resultdict[tag])))
+
+print_result({
+    'Invalid': invalid_vocab,
+    'Known': known_vocab,
+    'Target': target_vocab
+    })
+
+with open('result.txt', 'w+') as fo:
+    for w in target_vocab:
+        fo.write(w)
+        fo.write('\n')
